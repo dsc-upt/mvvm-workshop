@@ -3,15 +3,24 @@ package com.example.instagram
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.activity.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.instagram.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+    private val mainViewModel: MainViewModel by viewModels()
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.text.text = "Hello eu"
+        binding.lifecycleOwner = this
+        binding.mainViewModel = mainViewModel
+
+        mainViewModel.getUserPost()
     }
 }

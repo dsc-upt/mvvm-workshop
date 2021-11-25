@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="mainViewModel"
+            type="com.example.instagram.MainViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,14 +17,28 @@
         tools:context=".MainActivity">
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/main_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="@{mainViewModel.userPostLiveData.id}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:text="Apasa"
+            app:post="@{mainViewModel.userPostLiveData}"
+            nameUser="@{mainViewModel.name}"
+            android:onClick="@{() -> mainViewModel.modifyLiveData()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_info" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
